@@ -6,4 +6,8 @@
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="registrar">Registrar</string>
     <string name="continuar_con_google">Continuar con Google</string>
+    <string name="Contactar_Aseguradora">Contactar Aseguradora</string>
+    <string name="Contactar_Servicio_de_emergencia">Contactar Servicio de Emergencia</string>
+    <string name="elegir_opcion">Por favor elija una opción</string>
+    <string name="Olvido_su_Contraseña">Olvidó su Contraseña</string>
 </resources>

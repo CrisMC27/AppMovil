@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var registerButton: Button
     private lateinit var googleSignInButton: MaterialButton
+    private lateinit var forgotPasswordTextView: TextView
 
     private val googleSignInLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -56,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
         loginButton = findViewById(R.id.loginButton)
         registerButton = findViewById(R.id.registerButton)
         googleSignInButton = findViewById(R.id.googleSignInButton)
+        forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView)
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
@@ -101,6 +103,10 @@ class LoginActivity : AppCompatActivity() {
         googleSignInButton.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             googleSignInLauncher.launch(signInIntent)
+        }
+
+        forgotPasswordTextView.setOnClickListener {
+            //startActivity(Intent(this, ResetPasswordActivity::class.java))
         }
     }
 
