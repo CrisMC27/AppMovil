@@ -10,4 +10,11 @@
     <string name="Contactar_Servicio_de_emergencia">Contactar Servicio de Emergencia</string>
     <string name="elegir_opcion">Por favor elija una opción</string>
     <string name="Olvido_su_Contraseña">Olvidó su Contraseña</string>
+    <string name="regresar">Regresar</string>
+    <string name="axa_colpatria">Axa Colpatria</string>
+    <string name="mapfre">Mapfre</string>
+    <string name="allianz">Allianz</string>
+    <string name="seguros_bolivar">Seguros Bolívar</string>
+    <string name="seguros_mundial">Seguros Mundial</string>
+    <string name="sura">Sura</string>
 </resources>
