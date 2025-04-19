@@ -5,6 +5,17 @@
     <string name="hint_password">Contraseña</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="continuar_con_google">Continuar con Google</string>
+    <string name="Contactar_Aseguradora">Contactar Aseguradora</string>
+    <string name="Contactar_Servicio_de_emergencia">Contactar Servicio de Emergencia</string>
+    <string name="elegir_opcion">Por favor elija una opción</string>
+    <string name="Olvido_su_Contraseña">Olvidó su Contraseña</string>
+    <string name="regresar">Regresar</string>
+    <string name="axa_colpatria">Axa Colpatria</string>
+    <string name="mapfre">Mapfre</string>
+    <string name="allianz">Allianz</string>
+    <string name="seguros_bolivar">Seguros Bolívar</string>
+    <string name="seguros_mundial">Seguros Mundial</string>
+    <string name="sura">Sura</string>
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>
     <string name="edad">Edad</string>

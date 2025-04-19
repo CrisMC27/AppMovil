@@ -97,4 +97,16 @@
         app:iconTint="@null"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/Olvido_su_Contraseña"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 </LinearLayout>
