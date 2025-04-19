@@ -52,7 +52,7 @@
 
     <Button
         android:id="@+id/btnAseguradora"
-        android:layout_width="237dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
