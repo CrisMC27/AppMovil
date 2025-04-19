@@ -4,7 +4,6 @@
     <string name="hint_email">Correo electrónico</string>
     <string name="hint_password">Contraseña</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
-    <string name="registrar">Registrar</string>
     <string name="continuar_con_google">Continuar con Google</string>
     <string name="Contactar_Aseguradora">Contactar Aseguradora</string>
     <string name="Contactar_Servicio_de_emergencia">Contactar Servicio de Emergencia</string>
@@ -17,4 +16,12 @@
     <string name="seguros_bolivar">Seguros Bolívar</string>
     <string name="seguros_mundial">Seguros Mundial</string>
     <string name="sura">Sura</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="edad">Edad</string>
+    <string name="sexo">Sexo</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="confirmar_contrasena">Confirmar Contraseña</string>
+    <string name="registrar">Registrar</string>
+    <string name="logo_description">Logo de la aplicación SinBog</string>
 </resources>
