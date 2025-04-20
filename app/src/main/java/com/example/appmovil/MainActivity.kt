@@ -37,8 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         // Ir a pantalla para editar perfil al hacer clic en el nombre
         usernameTextView.setOnClickListener {
-            // val intent = Intent(this, EditarPerfilActivity::class.java)
-            // startActivity(intent)
+            val editarPerfilButton = findViewById<Button>(R.id.editarPerfilButton)
+            editarPerfilButton.setOnClickListener {
+                val intent = Intent(this, EditarPerfilActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         // Navegar a la pantalla de aseguradoras

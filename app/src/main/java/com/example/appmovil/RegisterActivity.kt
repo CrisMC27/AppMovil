@@ -17,6 +17,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var lastNameEditText: EditText
     private lateinit var ageEditText: EditText
     private lateinit var genderSpinner: Spinner
+    private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var confirmPasswordEditText: EditText
     private lateinit var registerButton: Button
@@ -31,6 +32,7 @@ class RegisterActivity : AppCompatActivity() {
         lastNameEditText = findViewById(R.id.lastNameEditText)
         ageEditText = findViewById(R.id.ageEditText)
         genderSpinner = findViewById(R.id.genderSpinner)
+        emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText)
         registerButton = findViewById(R.id.registerButton)
@@ -44,11 +46,11 @@ class RegisterActivity : AppCompatActivity() {
             val lastName = lastNameEditText.text.toString().trim()
             val age = ageEditText.text.toString().trim()
             val gender = genderSpinner.selectedItem.toString()
+            val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString()
             val confirmPassword = confirmPasswordEditText.text.toString()
-            val email = "$name.$lastName@gmail.com".lowercase()
 
-            if (name.isEmpty() || lastName.isEmpty() || age.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            if (name.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Logo en la esquina superior izquierda -->
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/sinbog"
+            android:layout_alignParentStart="true"
+            android:contentDescription="Logo" />
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tituloTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar Perfil"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/logoImageView"
+            android:layout_alignTop="@id/logoImageView"
+            android:layout_marginStart="16dp" />
+
+        <!-- Nombre -->
+        <EditText
+            android:id="@+id/nombreEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:layout_below="@id/logoImageView"
+            android:layout_marginTop="32dp" />
+
+        <!-- Apellidos -->
+        <EditText
+            android:id="@+id/apellidosEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellidos"
+            android:layout_below="@id/nombreEditText"
+            android:layout_marginTop="16dp" />
+
+        <!-- Correo -->
+        <EditText
+            android:id="@+id/correoEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo electrónico"
+            android:inputType="textEmailAddress"
+            android:layout_below="@id/apellidosEditText"
+            android:layout_marginTop="16dp" />
+
+        <!-- Edad -->
+        <EditText
+            android:id="@+id/edadEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edad"
+            android:inputType="number"
+            android:layout_below="@id/correoEditText"
+            android:layout_marginTop="16dp" />
+
+        <!-- Sexo -->
+        <Spinner
+            android:id="@+id/sexoSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edadEditText"
+            android:layout_marginTop="16dp" />
+
+        <!-- Botón Guardar y salir -->
+        <Button
+            android:id="@+id/guardarSalirButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar y salir"
+            android:enabled="false"
+            android:layout_below="@id/sexoSpinner"
+            android:layout_marginTop="24dp" />
+
+        <!-- Botón Regresar -->
+        <Button
+            android:id="@+id/regresarButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regresar"
+            android:layout_below="@id/guardarSalirButton"
+            android:layout_marginTop="12dp" />
+
+    </RelativeLayout>
+</ScrollView>

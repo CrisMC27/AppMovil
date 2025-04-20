@@ -24,4 +24,9 @@
     <string name="confirmar_contrasena">Confirmar Contraseña</string>
     <string name="registrar">Registrar</string>
     <string name="logo_description">Logo de la aplicación SinBog</string>
+    <string-array name="sexos_array">
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+    </string-array>
 </resources>
