@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var usernameTextView: TextView
     private lateinit var btnAseguradora: Button
     private lateinit var btnEmergencia: Button
+    private lateinit var editarPerfilButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         usernameTextView = findViewById(R.id.usernameTextView)
         btnAseguradora = findViewById(R.id.btnAseguradora)
         btnEmergencia = findViewById(R.id.btnEmergencia)
+        editarPerfilButton = findViewById(R.id.editarPerfilButton)
 
-        // Obtener el usuario actual
         val currentUser: FirebaseUser? = auth.currentUser
         if (currentUser != null) {
             val displayName = currentUser.displayName
@@ -35,31 +36,25 @@ class MainActivity : AppCompatActivity() {
             usernameTextView.text = "Usuario no identificado"
         }
 
-        // Ir a pantalla para editar perfil al hacer clic en el nombre
-        usernameTextView.setOnClickListener {
-            val editarPerfilButton = findViewById<Button>(R.id.editarPerfilButton)
-            editarPerfilButton.setOnClickListener {
-                val intent = Intent(this, EditarPerfilActivity::class.java)
-                startActivity(intent)
-            }
+        editarPerfilButton.setOnClickListener {
+            val intent = Intent(this, EditarPerfilActivity::class.java)
+            startActivity(intent)
         }
 
-        // Navegar a la pantalla de aseguradoras
         btnAseguradora.setOnClickListener {
             val intent = Intent(this, AseguradorasActivity::class.java)
-
             val displayName = currentUser?.displayName
             val email = currentUser?.email
             val nombreUsuario = displayName ?: email ?: "Usuario"
-
             intent.putExtra("nombreUsuario", nombreUsuario)
             startActivity(intent)
         }
 
-        // Navegar a la pantalla de servicios de emergencia
+        // Descomenta si tienes implementada esta actividad
         // btnEmergencia.setOnClickListener {
         //     val intent = Intent(this, EmergenciaActivity::class.java)
         //     startActivity(intent)
         // }
     }
 }
+
