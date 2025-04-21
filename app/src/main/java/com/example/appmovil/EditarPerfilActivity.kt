@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class EditarPerfilActivity : AppCompatActivity() {
 
@@ -36,23 +37,54 @@ class EditarPerfilActivity : AppCompatActivity() {
         regresarButton = findViewById(R.id.regresarButton)
         logoImageView = findViewById(R.id.logoImageView)
 
+        // Spinner de sexo
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.sexos_array, // asegúrate de tener este array en strings.xml
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            sexoSpinner.adapter = adapter
+        }
+
         // Obtener usuario actual
         val usuario = FirebaseAuth.getInstance().currentUser
+        val uid = usuario?.uid
 
-        originalNombre = usuario?.displayName ?: ""
-        originalCorreo = usuario?.email ?: ""
-        originalApellidos = ""  // Este valor lo puedes obtener si se almacena en Firebase
-        originalEdad = ""
-        originalSexo = ""
+        if (uid != null) {
+            val db = FirebaseFirestore.getInstance()
+            // Cambié la colección de 'usuarios' a 'users'
+            val usuarioRef = db.collection("users").document(uid)
 
-        // Mostrar datos iniciales
-        nombreEditText.setText(originalNombre)
-        correoEditText.setText(originalCorreo)
+            usuarioRef.get().addOnSuccessListener { doc ->
+                if (doc.exists()) {
+                    val nombre = doc.getString("nombre") ?: ""
+                    val apellidos = doc.getString("apellidos") ?: ""
+                    val correo = doc.getString("correo") ?: ""
+                    val edad = doc.getString("edad") ?: ""
+                    val sexo = doc.getString("sexo") ?: ""
+
+                    nombreEditText.setText(nombre)
+                    apellidosEditText.setText(apellidos)
+                    correoEditText.setText(correo)
+                    edadEditText.setText(edad)
+                    val sexoIndex = (sexoSpinner.adapter as ArrayAdapter<String>).getPosition(sexo)
+                    sexoSpinner.setSelection(sexoIndex)
+
+                    // Guardar originales
+                    originalNombre = nombre
+                    originalApellidos = apellidos
+                    originalCorreo = correo
+                    originalEdad = edad
+                    originalSexo = sexo
+                }
+            }
+        }
 
         // Inicialmente deshabilitar el botón "Guardar y salir"
         guardarSalirButton.isEnabled = false
 
-        // Escuchar cambios en los campos
+        // Detectar cambios en los campos
         val watcher = object : android.text.TextWatcher {
             override fun afterTextChanged(s: android.text.Editable?) {
                 verificarCambios()
@@ -68,7 +100,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         edadEditText.addTextChangedListener(watcher)
         sexoSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>,
+                parent: AdapterView<*>?,
                 view: android.view.View?,
                 position: Int,
                 id: Long
@@ -76,32 +108,54 @@ class EditarPerfilActivity : AppCompatActivity() {
                 verificarCambios()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         // Botón "Guardar y salir"
         guardarSalirButton.setOnClickListener {
-            // Aquí se simula guardar los cambios
-            Toast.makeText(this, "Cambios guardados (simulado)", Toast.LENGTH_SHORT).show()
-            finish()
+            if (uid != null) {
+                val db = FirebaseFirestore.getInstance()
+                // Cambié la colección de 'usuarios' a 'users'
+                val usuarioRef = db.collection("users").document(uid)
+
+                val nuevosDatos = mapOf(
+                    "nombre" to nombreEditText.text.toString(),
+                    "apellidos" to apellidosEditText.text.toString(),
+                    "correo" to correoEditText.text.toString(),
+                    "edad" to edadEditText.text.toString(),
+                    "sexo" to sexoSpinner.selectedItem.toString()
+                )
+
+                usuarioRef.get().addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        // Si existe el documento, lo actualizamos
+                        usuarioRef.update(nuevosDatos)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Cambios guardados", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Error al guardar: ${e.message}", Toast.LENGTH_LONG).show()
+                            }
+                    } else {
+                        // Si no existe, mostramos un mensaje
+                        Toast.makeText(this, "No se encontró información del perfil", Toast.LENGTH_LONG).show()
+                    }
+                }.addOnFailureListener { e ->
+                    Toast.makeText(this, "Error al consultar perfil: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Toast.makeText(this, "Usuario no autenticado", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // Botón "Regresar"
         regresarButton.setOnClickListener {
             finish()
         }
-
-        // Spinner de sexo
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.sexos_array, // asegúrate de tener este array en strings.xml
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            sexoSpinner.adapter = adapter
-        }
     }
 
+    // Función que verifica si los datos en los campos han cambiado
     private fun verificarCambios() {
         val nuevoNombre = nombreEditText.text.toString()
         val nuevosApellidos = apellidosEditText.text.toString()
@@ -109,6 +163,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         val nuevaEdad = edadEditText.text.toString()
         val nuevoSexo = sexoSpinner.selectedItem.toString()
 
+        // Habilitar el botón "Guardar y salir" si hubo cambios
         guardarSalirButton.isEnabled = (
                 nuevoNombre != originalNombre ||
                         nuevosApellidos != originalApellidos ||
@@ -118,4 +173,3 @@ class EditarPerfilActivity : AppCompatActivity() {
                 )
     }
 }
-

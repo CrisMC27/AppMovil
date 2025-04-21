@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,9 +30,26 @@ class MainActivity : AppCompatActivity() {
 
         val currentUser: FirebaseUser? = auth.currentUser
         if (currentUser != null) {
-            val displayName = currentUser.displayName
-            val email = currentUser.email
-            usernameTextView.text = displayName ?: email ?: "Usuario"
+            // Obtener la referencia a Firestore
+            val db = FirebaseFirestore.getInstance()
+
+            // Obtener los datos del usuario desde Firestore
+            val userRef = db.collection("users").document(currentUser.uid)
+
+            userRef.get().addOnSuccessListener { document ->
+                if (document.exists()) {
+                    // Recuperar nombre y apellidos del usuario
+                    val nombre = document.getString("nombre") ?: ""
+                    val apellidos = document.getString("apellidos") ?: ""
+
+                    // Actualizar el TextView con el nombre y apellido
+                    usernameTextView.text = "$nombre $apellidos"
+                } else {
+                    usernameTextView.text = "Usuario no encontrado"
+                }
+            }.addOnFailureListener {
+                usernameTextView.text = "Error al cargar datos"
+            }
         } else {
             usernameTextView.text = "Usuario no identificado"
         }
@@ -57,4 +75,3 @@ class MainActivity : AppCompatActivity() {
         // }
     }
 }
-
