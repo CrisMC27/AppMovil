@@ -29,4 +29,7 @@
         <item>Femenino</item>
         <item>Otro</item>
     </string-array>
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="guardar_y_salir">Guardar y Salir</string>
+    <string name="editar">Editar</string>
 </resources>

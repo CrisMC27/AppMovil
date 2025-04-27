@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Descomenta si tienes implementada esta actividad
         // btnEmergencia.setOnClickListener {
         //     val intent = Intent(this, EmergenciaActivity::class.java)
         //     startActivity(intent)

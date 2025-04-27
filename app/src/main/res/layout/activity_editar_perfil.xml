@@ -17,23 +17,25 @@
             android:layout_width="94dp"
             android:layout_height="87dp"
             android:src="@drawable/sinbog"
-            android:layout_alignParentStart="true"
-            android:contentDescription="Logo" />
+            android:layout_alignParentStart="true"/>
 
         <!-- Título -->
+
         <TextView
             android:id="@+id/tituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Editar Perfil"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_toEndOf="@id/logoImageView"
             android:layout_alignTop="@id/logoImageView"
-            android:layout_marginStart="16dp" />
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@id/logoImageView"
+            android:text="@string/editar_perfil"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <!-- Nombre -->
+
         <EditText
             android:id="@+id/nombreEditText"
             android:layout_width="match_parent"
@@ -41,7 +43,8 @@
             android:hint="Nombre"
             android:textColor="#000000"
             android:layout_below="@id/logoImageView"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="32dp"
+            android:minHeight="48dp"/>
 
         <!-- Apellidos -->
         <EditText
@@ -51,7 +54,8 @@
             android:hint="Apellidos"
             android:textColor="#000000"
             android:layout_below="@id/nombreEditText"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"/>
 
         <!-- Correo -->
         <EditText
@@ -62,7 +66,8 @@
             android:inputType="textEmailAddress"
             android:textColor="#000000"
             android:layout_below="@id/apellidosEditText"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"/>
 
         <!-- Edad -->
         <EditText
@@ -73,7 +78,8 @@
             android:inputType="number"
             android:textColor="#000000"
             android:layout_below="@id/correoEditText"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"/>
 
         <!-- Sexo -->
         <Spinner
@@ -81,27 +87,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/edadEditText"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"/>
 
         <!-- Botón Guardar y salir -->
+
         <Button
             android:id="@+id/guardarSalirButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar y salir"
-            android:enabled="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:backgroundTint="#7F1D1D"
             android:layout_below="@id/sexoSpinner"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="79dp"
+            android:backgroundTint="#7F1D1D"
+            android:enabled="false"
+            android:text="@string/guardar_y_salir"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
         <!-- Botón Regresar -->
+
         <Button
             android:id="@+id/regresarButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Regresar"
+            android:text="@string/regresar"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:backgroundTint="#7F1D1D"

@@ -35,8 +35,6 @@
 
     <!-- Texto de bienvenida -->
 
-    <!-- Botón Editar Perfil -->
-
     <TextView
         android:id="@+id/chooseOptionTextView"
         android:layout_width="236dp"
@@ -47,42 +45,48 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logoImageView" />
 
+    <!-- Botón Editar Perfil -->
+
     <Button
         android:id="@+id/editarPerfilButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="#7F1D1D"
-        android:text="Editar Perfil"
+        android:text="@string/editar_perfil"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chooseOptionTextView" />
+        app:layout_constraintTop_toBottomOf="@id/usernameTextView" />
 
     <!-- Botón Aseguradora -->
+
     <Button
         android:id="@+id/btnAseguradora"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="268dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="#7F1D1D"
         android:text="@string/Contactar_Aseguradora"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editarPerfilButton" />
 
     <!-- Botón Servicios de emergencia -->
+
     <Button
         android:id="@+id/btnEmergencia"
         android:layout_width="0dp"
