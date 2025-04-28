@@ -107,6 +107,7 @@
         android:clickable="true"
         android:focusable="true"
         android:text="@string/Olvido_su_Contraseña"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textColor="#7F1D1D"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
 </LinearLayout>
