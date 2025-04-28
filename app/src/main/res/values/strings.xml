@@ -8,7 +8,7 @@
     <string name="Contactar_Aseguradora">Contactar Aseguradora</string>
     <string name="Contactar_Servicio_de_emergencia">Contactar Servicio de Emergencia</string>
     <string name="elegir_opcion">Por favor elija una opción</string>
-    <string name="Olvido_su_Contraseña">Olvidó su Contraseña</string>
+    <string name="Olvido_su_Contraseña">¿Olvidó su Contraseña?</string>
     <string name="regresar">Regresar</string>
     <string name="axa_colpatria">Axa Colpatria</string>
     <string name="mapfre">Mapfre</string>
@@ -30,6 +30,11 @@
         <item>Otro</item>
     </string-array>
     <string name="editar_perfil">Editar Perfil</string>
-    <string name="guardar_y_salir">Guardar y Salir</string>
-    <string name="editar">Editar</string>
+    <string name="Guardar_y_Salir">Guardar y Salir</string>
+    <string name="hint_edad">Edad</string>
+    <string name="hint_apellidos">Apellidos</string>
+    <string name="hint_nombres">Nombres</string>
+    <string name="Ingrese">Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</string>
+    <string name="Enviar">Enviar</string>
+    <string name="Restablecer_contraseña">Restablecer Contraseña</string>
 </resources>

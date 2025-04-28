@@ -17,95 +17,86 @@
             android:layout_width="94dp"
             android:layout_height="87dp"
             android:src="@drawable/sinbog"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:contentDescription="Logo" />
 
         <!-- Título -->
-
         <TextView
             android:id="@+id/tituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/logoImageView"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="14dp"
-            android:layout_toEndOf="@id/logoImageView"
             android:text="@string/editar_perfil"
-            android:textColor="#000000"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_toEndOf="@id/logoImageView"
+            android:layout_alignTop="@id/logoImageView"
+            android:layout_marginStart="16dp" />
 
         <!-- Nombre -->
-
         <EditText
             android:id="@+id/nombreEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
+            android:layout_height="48dp"
+            android:hint="@string/hint_nombres"
             android:textColor="#000000"
             android:layout_below="@id/logoImageView"
-            android:layout_marginTop="32dp"
-            android:minHeight="48dp"/>
+            android:layout_marginTop="32dp" />
 
         <!-- Apellidos -->
         <EditText
             android:id="@+id/apellidosEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Apellidos"
+            android:layout_height="48dp"
+            android:hint="@string/hint_apellidos"
             android:textColor="#000000"
             android:layout_below="@id/nombreEditText"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"/>
+            android:layout_marginTop="16dp" />
 
         <!-- Correo -->
         <EditText
             android:id="@+id/correoEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Correo electrónico"
+            android:layout_height="48dp"
+            android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:textColor="#000000"
             android:layout_below="@id/apellidosEditText"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"/>
+            android:layout_marginTop="16dp" />
 
         <!-- Edad -->
         <EditText
             android:id="@+id/edadEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Edad"
+            android:layout_height="48dp"
+            android:hint="@string/hint_edad"
             android:inputType="number"
             android:textColor="#000000"
             android:layout_below="@id/correoEditText"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"/>
+            android:layout_marginTop="16dp" />
 
         <!-- Sexo -->
         <Spinner
             android:id="@+id/sexoSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_below="@id/edadEditText"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"/>
+            android:layout_marginTop="16dp" />
 
         <!-- Botón Guardar y salir -->
-
         <Button
             android:id="@+id/guardarSalirButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sexoSpinner"
-            android:layout_marginTop="79dp"
-            android:backgroundTint="#7F1D1D"
+            android:text="@string/Guardar_y_Salir"
             android:enabled="false"
-            android:text="@string/guardar_y_salir"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:backgroundTint="#7F1D1D"
+            android:layout_below="@id/sexoSpinner"
+            android:layout_marginTop="24dp" />
 
         <!-- Botón Regresar -->
-
         <Button
             android:id="@+id/regresarButton"
             android:layout_width="match_parent"
