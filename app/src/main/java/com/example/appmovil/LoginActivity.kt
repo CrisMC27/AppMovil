@@ -2,6 +2,7 @@ package com.example.appmovil
 
 import android.content.Intent
 import android.os.Bundle
+import android.graphics.Paint
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -60,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
         registerButton = findViewById(R.id.registerButton)
         googleSignInButton = findViewById(R.id.googleSignInButton)
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView)
+        forgotPasswordTextView.paintFlags = forgotPasswordTextView.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
@@ -108,7 +110,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         forgotPasswordTextView.setOnClickListener {
-            //startActivity(Intent(this, ResetPasswordActivity::class.java))
+            val intent = Intent(this, ResetPasswordActivity::class.java)
+            startActivity(intent)
         }
     }
 
