@@ -34,73 +34,64 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Texto de bienvenida -->
-
     <TextView
         android:id="@+id/chooseOptionTextView"
-        android:layout_width="236dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="180dp"
-        android:text="@string/elegir_opcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Selecciona una opción"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
+        app:layout_constraintTop_toBottomOf="@id/logoImageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImageView" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Botón Crear Caso -->
+    <Button
+        android:id="@+id/crearCasoButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Crear caso"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#7F1D1D"
+        app:layout_constraintTop_toBottomOf="@id/chooseOptionTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Botón Mis Casos -->
+    <Button
+        android:id="@+id/misCasosButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Mis casos"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#7F1D1D"
+        app:layout_constraintTop_toBottomOf="@id/crearCasoButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Botón Editar Perfil -->
-
     <Button
         android:id="@+id/editarPerfilButton"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="256dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="32dp"
         android:backgroundTint="#7F1D1D"
-        android:text="@string/editar_perfil"
+        android:text="Editar perfil"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/usernameTextView" />
 
-    <!-- Botón Aseguradora -->
-
-    <Button
-        android:id="@+id/btnAseguradora"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="268dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#7F1D1D"
-        android:text="@string/Contactar_Aseguradora"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editarPerfilButton" />
-
-    <!-- Botón Servicios de emergencia -->
-
-    <Button
-        android:id="@+id/btnEmergencia"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#7F1D1D"
-        android:text="@string/Contactar_Servicio_de_emergencia"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAseguradora" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

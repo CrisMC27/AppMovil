@@ -13,8 +13,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var usernameTextView: TextView
-    private lateinit var btnAseguradora: Button
-    private lateinit var btnEmergencia: Button
+    private lateinit var crearCasoButton: Button
+    private lateinit var misCasosButton: Button
     private lateinit var editarPerfilButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,25 +24,19 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         usernameTextView = findViewById(R.id.usernameTextView)
-        btnAseguradora = findViewById(R.id.btnAseguradora)
-        btnEmergencia = findViewById(R.id.btnEmergencia)
+        crearCasoButton = findViewById(R.id.crearCasoButton)
+        misCasosButton = findViewById(R.id.misCasosButton)
         editarPerfilButton = findViewById(R.id.editarPerfilButton)
 
         val currentUser: FirebaseUser? = auth.currentUser
         if (currentUser != null) {
-            // Obtener la referencia a Firestore
             val db = FirebaseFirestore.getInstance()
-
-            // Obtener los datos del usuario desde Firestore
             val userRef = db.collection("users").document(currentUser.uid)
 
             userRef.get().addOnSuccessListener { document ->
                 if (document.exists()) {
-                    // Recuperar nombre y apellidos del usuario
                     val nombre = document.getString("nombre") ?: ""
                     val apellidos = document.getString("apellidos") ?: ""
-
-                    // Actualizar el TextView con el nombre y apellido
                     usernameTextView.text = "$nombre $apellidos"
                 } else {
                     usernameTextView.text = "Usuario no encontrado"
@@ -54,23 +48,16 @@ class MainActivity : AppCompatActivity() {
             usernameTextView.text = "Usuario no identificado"
         }
 
+        crearCasoButton.setOnClickListener {
+            startActivity(Intent(this, CrearCasoActivity::class.java))
+        }
+
+        misCasosButton.setOnClickListener {
+            startActivity(Intent(this, MisCasosActivity::class.java))
+        }
+
         editarPerfilButton.setOnClickListener {
-            val intent = Intent(this, EditarPerfilActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, EditarPerfilActivity::class.java))
         }
-
-        btnAseguradora.setOnClickListener {
-            val intent = Intent(this, AseguradorasActivity::class.java)
-            val displayName = currentUser?.displayName
-            val email = currentUser?.email
-            val nombreUsuario = displayName ?: email ?: "Usuario"
-            intent.putExtra("nombreUsuario", nombreUsuario)
-            startActivity(intent)
-        }
-
-        // btnEmergencia.setOnClickListener {
-        //     val intent = Intent(this, EmergenciaActivity::class.java)
-        //     startActivity(intent)
-        // }
     }
 }
