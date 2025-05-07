@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             usernameTextView.text = "Usuario no identificado"
         }
-
         crearCasoButton.setOnClickListener {
             startActivity(Intent(this, CrearCasoActivity::class.java))
         }

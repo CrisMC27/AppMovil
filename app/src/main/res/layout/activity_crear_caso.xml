@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollViewCrearCaso"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CEAF0E"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="94dp"
+            android:layout_height="87dp"
+            android:src="@drawable/sinbog"
+            android:layout_alignParentStart="true"
+            android:contentDescription="Logo" />
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tituloTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crear caso"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_toEndOf="@id/logoImageView"
+            android:layout_alignTop="@id/logoImageView"
+            android:layout_marginStart="16dp" />
+
+        <!-- Botones de acción -->
+        <Button
+            android:id="@+id/btnContactarAseguradora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contactar Aseguradora"
+            android:layout_below="@id/logoImageView"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#7F1D1D"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnContactarEmergencias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contactar Servicios de Emergencias"
+            android:layout_below="@id/btnContactarAseguradora"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#7F1D1D"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnTomarFotos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tomar Fotos"
+            android:layout_below="@id/btnContactarEmergencias"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#7F1D1D"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnGenerarDocumento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generar Documento"
+            android:layout_below="@id/btnTomarFotos"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#7F1D1D"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <!-- Botones inferiores -->
+        <LinearLayout
+            android:id="@+id/layoutBotonesInferiores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/btnGenerarDocumento"
+            android:layout_marginTop="36dp"
+            android:gravity="start">
+
+            <Button
+                android:id="@+id/btnGuardarCaso"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Guardar caso"
+                android:backgroundTint="#7F1D1D"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnSalirSinGuardar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Salir sin guardar"
+                android:backgroundTint="#7F1D1D"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
