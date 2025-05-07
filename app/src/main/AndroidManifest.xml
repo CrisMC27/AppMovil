@@ -19,6 +19,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity android:name=".CrearCasoActivity" />
+        <activity android:name=".MisCasosActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
