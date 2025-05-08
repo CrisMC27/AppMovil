@@ -1,5 +1,6 @@
 package com.example.appmovil
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -26,8 +27,9 @@ class CrearCasoActivity : AppCompatActivity() {
         salirSinGuardarButton = findViewById(R.id.btnSalirSinGuardar)
 
         contactarAseguradoraButton.setOnClickListener {
-            Toast.makeText(this, "Contactando aseguradora...", Toast.LENGTH_SHORT).show()
-            // Lógica para contactar aseguradora
+            val intent = Intent(this, AseguradorasActivity::class.java)
+            intent.putExtra("nombreUsuario", "UsuarioEjemplo") // o pásale el real si lo tienes
+            startActivity(intent)
         }
 
         contactarEmergenciasButton.setOnClickListener {
