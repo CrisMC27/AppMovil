@@ -28,7 +28,7 @@ class CrearCasoActivity : AppCompatActivity() {
 
         contactarAseguradoraButton.setOnClickListener {
             val intent = Intent(this, AseguradorasActivity::class.java)
-            intent.putExtra("nombreUsuario", "UsuarioEjemplo") // o pásale el real si lo tienes
+            intent.putExtra("nombreUsuario", "UsuarioEjemplo")
             startActivity(intent)
         }
 
@@ -40,8 +40,10 @@ class CrearCasoActivity : AppCompatActivity() {
 
         tomarFotosButton.setOnClickListener {
             Toast.makeText(this, "Abriendo cámara...", Toast.LENGTH_SHORT).show()
-            // Lógica para abrir la cámara
+            val intent = Intent(this, TomarFotosActivity::class.java)
+            startActivity(intent)
         }
+
 
         generarDocumentoButton.setOnClickListener {
             Toast.makeText(this, "Generando documento PDF...", Toast.LENGTH_SHORT).show()
