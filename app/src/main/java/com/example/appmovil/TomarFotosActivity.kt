@@ -40,6 +40,12 @@ class TomarFotosActivity : AppCompatActivity() {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             }
         }
+        val regresarButton: Button = findViewById(R.id.btnRegresar)
+
+        regresarButton.setOnClickListener {
+            finish() // Esto cerrará la actividad y regresará a la anterior.
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
