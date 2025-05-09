@@ -34,7 +34,8 @@ class CrearCasoActivity : AppCompatActivity() {
 
         contactarEmergenciasButton.setOnClickListener {
             Toast.makeText(this, "Llamando a emergencias...", Toast.LENGTH_SHORT).show()
-            // Lógica para contactar servicios de emergencia
+            val intent = Intent(this, EmergenciaActivity::class.java)
+            startActivity(intent)
         }
 
         tomarFotosButton.setOnClickListener {

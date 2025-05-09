@@ -31,6 +31,7 @@
         </activity>
         <activity android:name=".MainActivity" android:exported="true" />
         <activity android:name=".AseguradorasActivity" android:exported="false" />
+        <activity android:name=".EmergenciaActivity" />
         <activity android:name=".ResetPasswordActivity" android:exported="false" />
     </application>
 
