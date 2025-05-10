@@ -29,6 +29,7 @@ class CrearCasoActivity : AppCompatActivity() {
 
     private val fotos = mutableListOf<Bitmap>() // Lista de fotos tomadas
     private lateinit var nombreUsuario: String
+    private lateinit var descripcion: String  // Para almacenar la descripción del caso
 
     private var pdfFilePath: String? = null // Variable para almacenar la ruta del archivo PDF
 
@@ -131,13 +132,14 @@ class CrearCasoActivity : AppCompatActivity() {
 
         if (requestCode == 101 && resultCode == RESULT_OK) {
             val paths = data?.getStringArrayListExtra("fotoPaths") ?: return
+            descripcion = data?.getStringExtra("descripcion") ?: ""  // Obtener la descripción
 
             for (path in paths) {
                 val bitmap = BitmapFactory.decodeFile(path)
                 fotos.add(bitmap)  // Agregar la foto a la lista de fotos
             }
 
-            Toast.makeText(this, "Fotos recibidas: ${fotos.size}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Fotos recibidas: ${fotos.size}\nDescripción: $descripcion", Toast.LENGTH_LONG).show()
         }
     }
 

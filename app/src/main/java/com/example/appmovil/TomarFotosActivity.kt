@@ -21,11 +21,12 @@ class TomarFotosActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var currentPhotoPath: String
     private val fotos = mutableListOf<Bitmap>()
-    private val fotoUris = mutableListOf<Uri>() // Lista de URIs para almacenar las fotos
+    private val fotoUris = mutableListOf<Uri>()
     private lateinit var adapter: FotosAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var mensajeInicial: TextView
     private lateinit var abrirCamaraButton: Button
+    private lateinit var descripcionEditText: EditText  // NUEVO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,7 @@ class TomarFotosActivity : AppCompatActivity() {
         mensajeInicial = findViewById(R.id.mensajeInicial)
         recyclerView = findViewById(R.id.recyclerViewFotos)
         abrirCamaraButton = findViewById(R.id.btnAbrirCamara)
+        descripcionEditText = findViewById(R.id.editTextDescripcion)  // NUEVO
 
         adapter = FotosAdapter(fotos)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -59,11 +61,18 @@ class TomarFotosActivity : AppCompatActivity() {
 
         val regresarButton: Button = findViewById(R.id.btnRegresar)
         regresarButton.setOnClickListener {
-            finish() // Esto cerrará la actividad y regresará a la anterior.
+            val descripcion = descripcionEditText.text.toString()
+            val paths = fotoUris.map { it.path ?: "" }
+
+            val resultIntent = Intent()
+            resultIntent.putStringArrayListExtra("fotoPaths", ArrayList(paths))
+            resultIntent.putExtra("descripcionCaso", descripcion)
+
+            setResult(RESULT_OK, resultIntent)
+            finish()
         }
     }
 
-    // Esta función crea un archivo de imagen único
     private fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir: File = File(getExternalFilesDir(null), "Pictures")
@@ -78,13 +87,13 @@ class TomarFotosActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val photoURI = Uri.parse(currentPhotoPath) // Obtener la URI
-            fotoUris.add(photoURI) // Guardar la URI
-            val imageBitmap = BitmapFactory.decodeFile(currentPhotoPath) // Decodificar el archivo en un Bitmap
-            fotos.add(imageBitmap) // Agregar el Bitmap a la lista para mostrar en la galería
+            val photoURI = Uri.fromFile(File(currentPhotoPath))
+            fotoUris.add(photoURI)
+            val imageBitmap = BitmapFactory.decodeFile(currentPhotoPath)
+            fotos.add(imageBitmap)
             adapter.notifyItemInserted(fotos.size - 1)
-            mensajeInicial.text = ""  // Ocultar el mensaje cuando haya imágenes
+            mensajeInicial.text = ""
         }
     }
-
 }
+
