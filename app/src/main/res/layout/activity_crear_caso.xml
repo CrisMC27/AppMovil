@@ -97,6 +97,14 @@
                 android:backgroundTint="#7F1D1D"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
+            <Button
+                android:id="@+id/btnCompartir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Compartir"
+                android:enabled="false"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true" />
 
             <Button
                 android:id="@+id/btnSalirSinGuardar"

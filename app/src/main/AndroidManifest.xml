@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <!-- Permiso para acceder a internet para Firebase -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- Indica que la función de llamadas es opcional -->
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
@@ -35,6 +38,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!-- Declaración de actividades -->
         <activity android:name=".EditarPerfilActivity" android:exported="false" />
         <activity android:name=".RegisterActivity" android:exported="false" />
         <activity android:name=".CrearCasoActivity" />
