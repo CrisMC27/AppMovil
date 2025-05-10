@@ -3,11 +3,14 @@ package com.example.appmovil
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,64 +24,58 @@ class TomarFotosActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var currentPhotoPath: String
     private val fotos = mutableListOf<Bitmap>()
-    private val fotoUris = mutableListOf<Uri>()
-    private lateinit var adapter: FotosAdapter
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var mensajeInicial: TextView
-    private lateinit var abrirCamaraButton: Button
-    private lateinit var descripcionEditText: EditText  // NUEVO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tomar_fotos)
 
-        val nombreUsuario = intent.getStringExtra("nombreUsuario") ?: "Usuario"
-        findViewById<TextView>(R.id.usernameTextView).text = nombreUsuario
+        val btnAbrirCamara = findViewById<Button>(R.id.btnAbrirCamara)
+        val btnRegresar = findViewById<Button>(R.id.btnRegresar)
+        val editTextDescripcion = findViewById<EditText>(R.id.editTextDescripcion)
+        val recyclerViewFotos = findViewById<RecyclerView>(R.id.recyclerViewFotos)
 
-        mensajeInicial = findViewById(R.id.mensajeInicial)
-        recyclerView = findViewById(R.id.recyclerViewFotos)
-        abrirCamaraButton = findViewById(R.id.btnAbrirCamara)
-        descripcionEditText = findViewById(R.id.editTextDescripcion)  // NUEVO
+        // Configurar el RecyclerView
+        val adapter = FotoAdapter(fotos)
+        recyclerViewFotos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewFotos.adapter = adapter
 
-        adapter = FotosAdapter(fotos)
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = adapter
+        btnAbrirCamara.setOnClickListener {
+            dispatchTakePictureIntent()
+        }
 
-        abrirCamaraButton.setOnClickListener {
-            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            if (takePictureIntent.resolveActivity(packageManager) != null) {
-                val photoFile = createImageFile()
+        btnRegresar.setOnClickListener {
+            val descripcion = editTextDescripcion.text.toString()
+            val resultIntent = Intent()
+            resultIntent.putExtra("descripcion", descripcion)
+            // Si deseas pasar las fotos, deberías guardarlas y pasar URIs
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+        }
+    }
+
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (takePictureIntent.resolveActivity(packageManager) != null) {
+            val photoFile: File? = try {
+                createImageFile()
+            } catch (ex: Exception) {
+                null
+            }
+            photoFile?.also {
                 val photoURI: Uri = FileProvider.getUriForFile(
                     this,
                     "${applicationContext.packageName}.provider",
-                    photoFile
+                    it
                 )
-                currentPhotoPath = photoFile.absolutePath
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             }
-        }
-
-        val regresarButton: Button = findViewById(R.id.btnRegresar)
-        regresarButton.setOnClickListener {
-            val descripcion = descripcionEditText.text.toString()
-            val paths = fotoUris.map { it.path ?: "" }
-
-            val resultIntent = Intent()
-            resultIntent.putStringArrayListExtra("fotoPaths", ArrayList(paths))
-            resultIntent.putExtra("descripcionCaso", descripcion)
-
-            setResult(RESULT_OK, resultIntent)
-            finish()
         }
     }
 
     private fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val storageDir: File = File(getExternalFilesDir(null), "Pictures")
-        if (!storageDir.exists()) {
-            storageDir.mkdirs()
-        }
+        val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
         return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir).apply {
             currentPhotoPath = absolutePath
         }
@@ -86,14 +83,10 @@ class TomarFotosActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val photoURI = Uri.fromFile(File(currentPhotoPath))
-            fotoUris.add(photoURI)
-            val imageBitmap = BitmapFactory.decodeFile(currentPhotoPath)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, Uri.fromFile(File(currentPhotoPath)))
             fotos.add(imageBitmap)
-            adapter.notifyItemInserted(fotos.size - 1)
-            mensajeInicial.text = ""
+            findViewById<RecyclerView>(R.id.recyclerViewFotos).adapter?.notifyDataSetChanged()
         }
     }
 }
-
