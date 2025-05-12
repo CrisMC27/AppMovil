@@ -12,36 +12,41 @@
         android:padding="24dp">
 
         <!-- Logo -->
+
+        <!-- Título -->
+
+        <!-- Botones de acción -->
+
         <ImageView
             android:id="@+id/logoImageView"
             android:layout_width="94dp"
             android:layout_height="87dp"
-            android:src="@drawable/sinbog"
             android:layout_alignParentStart="true"
-            android:contentDescription="Logo" />
+            android:layout_marginStart="6dp"
+            android:contentDescription="Logo"
+            android:src="@drawable/sinbog" />
 
-        <!-- Título -->
         <TextView
             android:id="@+id/tituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Crear caso"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_toEndOf="@id/logoImageView"
             android:layout_alignTop="@id/logoImageView"
-            android:layout_marginStart="16dp" />
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="123dp"
+            android:layout_toEndOf="@id/logoImageView"
+            android:text="Crear caso"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <!-- Botones de acción -->
         <Button
             android:id="@+id/btnContactarAseguradora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contactar Aseguradora"
             android:layout_below="@id/logoImageView"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="112dp"
             android:backgroundTint="#7F1D1D"
+            android:text="Contactar Aseguradora"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
@@ -103,6 +108,8 @@
                 android:layout_height="wrap_content"
                 android:text="Compartir"
                 android:enabled="false"
+                android:backgroundTint="#7F1D1D"
+                android:textColor="#FFFFFF"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true" />
 
