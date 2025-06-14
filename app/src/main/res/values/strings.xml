@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppMovil</string>
+    <string name="app_name">SinBog</string>
     <string name="default_web_client_id">721726309682-i3qo19ndiklv2kre5c41ffvdhad61458.apps.googleusercontent.com</string>
     <string name="hint_email">Correo electrónico</string>
     <string name="hint_password">Contraseña</string>
