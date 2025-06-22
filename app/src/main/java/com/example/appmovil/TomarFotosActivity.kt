@@ -73,7 +73,13 @@ class TomarFotosActivity : AppCompatActivity() {
                 photoFile
             )
             currentPhotoPath = photoFile.absolutePath
+
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+
+            // 🔧 Agregamos los permisos para la URI
+            takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
         } else {
             Toast.makeText(this, "No se pudo abrir la cámara", Toast.LENGTH_SHORT).show()
@@ -93,7 +99,7 @@ class TomarFotosActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 abrirCamara()
             } else {
-                Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Necesitas permitir el acceso a la cámara para tomar fotos", Toast.LENGTH_LONG).show()
             }
         }
     }

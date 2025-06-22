@@ -25,17 +25,19 @@ class AseguradorasActivity : AppCompatActivity() {
         usernameTextView.text = nombreUsuario
 
         val aseguradoras = mapOf(
-            R.id.btnAxa to "tel:018000515999",
-            R.id.btnMapfre to "tel:018000519991",
-            R.id.btnAllianz to "tel:6013077080",
-            R.id.btnBolivar to "tel:6013122122",
-            R.id.btnMundial to "tel:6017444788",
-            R.id.btnSura to "tel:018000519494"
+            R.id.btnAxa to "#247",
+            R.id.btnMapfre to "#624",
+            R.id.btnAllianz to "#265",
+            R.id.btnBolivar to "#322",
+            R.id.btnMundial to "#224",
+            R.id.btnSura to "#888"
         )
 
-        aseguradoras.forEach { (buttonId, telefono) ->
+        aseguradoras.forEach { (buttonId, rawNumber) ->
             findViewById<Button>(buttonId).setOnClickListener {
-                makePhoneCall(telefono)
+                // Codificar el número USSD
+                val encodedNumber = "tel:" + Uri.encode(rawNumber)
+                makePhoneCall(encodedNumber)
             }
         }
 
@@ -45,20 +47,24 @@ class AseguradorasActivity : AppCompatActivity() {
         }
     }
 
-    private fun makePhoneCall(phoneNumber: String) {
+    private fun makePhoneCall(encodedPhoneUri: String) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
             != PackageManager.PERMISSION_GRANTED
         ) {
-            pendingPhoneNumber = phoneNumber
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), REQUEST_CALL_PERMISSION)
+            pendingPhoneNumber = encodedPhoneUri
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CALL_PHONE),
+                REQUEST_CALL_PERMISSION
+            )
         } else {
-            startCall(phoneNumber)
+            startCall(encodedPhoneUri)
         }
     }
 
-    private fun startCall(phoneNumber: String) {
+    private fun startCall(encodedPhoneUri: String) {
         val intent = Intent(Intent.ACTION_CALL)
-        intent.data = Uri.parse(phoneNumber)
+        intent.data = Uri.parse(encodedPhoneUri)
         startActivity(intent)
     }
 
