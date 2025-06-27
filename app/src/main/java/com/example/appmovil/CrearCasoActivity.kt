@@ -88,8 +88,7 @@ class CrearCasoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (llamadaAseguradoraRealizada && horaLlamadaAseguradora != null &&
-                llamadaEmergenciasRealizada && horaLlamadaEmergencias != null
+            if (llamadaAseguradoraRealizada && horaLlamadaAseguradora != null
             ) {
                 Toast.makeText(this, "Generando documento PDF...", Toast.LENGTH_SHORT).show()
 
@@ -108,7 +107,7 @@ class CrearCasoActivity : AppCompatActivity() {
                 pdfFilePath = pdfFile.absolutePath
                 compartirButton.isEnabled = true
             } else {
-                Toast.makeText(this, "Faltan datos para generar el documento", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor llame a la aseguradora para generar el Docuemento", Toast.LENGTH_SHORT).show()
             }
         }
 
